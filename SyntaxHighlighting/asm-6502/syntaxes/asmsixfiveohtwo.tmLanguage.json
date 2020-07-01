@@ -1,15 +1,23 @@
 {
 	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
 	"name": "6502 Assembly",
+	"scopeName": "source.asm",
 	"patterns": [
 		{
-			"include": "#keywords"
+			"include": "#comment"
 		},
 		{
 			"include": "#strings"
 		}
 	],
 	"repository": {
+
+		"comment": {
+			"name": "comment.line.semicolon",
+			"match": "(;.*)$"
+		},
+
+
 		"keywords": {
 			"patterns": [{
 				"name": "keyword.control.asmsixfiveohtwo",
@@ -27,6 +35,5 @@
 				}
 			]
 		}
-	},
-	"scopeName": "source.asm"
+	}
 }
