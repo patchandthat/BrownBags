@@ -5,7 +5,8 @@
 	"patterns": [
 		{ "include": "#comment" },
 		{ "include": "#strings" },
-		{ "include": "#label" }
+		{ "include": "#label" },
+		{ "include": "#opcodes" }
 	],
 	"repository": {
 
@@ -26,20 +27,22 @@
 			}
 		},
 
-
-
-
-
-
-
-		
-
-		"keywords": {
-			"patterns": [{
-				"name": "keyword.control.asmsixfiveohtwo",
-				"match": "\\b(if|while|for|return)\\b"
-			}]
+		"opcodes": {
+			"patterns": 
+			[
+				{
+					"name": "keyword.other.opcode",
+					"match": "\\b(ADC|AND|ASL|BIT|CLC|CLD|CLI|CLV|CMP|CPX|CPY|DEC|DEX|DEY|EOR|INC|INX|INY|LDA|LDX|LDY|LSR|NOP|ORA|PHA|PHP|PLA|PLP|ROL|ROR|SBC|SEC|SED|SEI|STA|STX|STY|TAX|TAY|TSX|TXA|TXS|TYA)\\b"
+				},
+				{ "include": "#control-flow" }
+			]
 		},
+
+		"control-flow": {
+			"name": "keyword.control",
+			"match": "\\b(BCC|BCS|BEQ|BMI|BNE|BPL|BVC|BVS|JMP|JSR|RTI|RTS|BRK)\\b"
+		},
+
 		"strings": {
 			"name": "string.quoted.double.asmsixfiveohtwo",
 			"begin": "\"",
