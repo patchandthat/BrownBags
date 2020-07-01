@@ -6,7 +6,8 @@
 		{ "include": "#comment" },
 		{ "include": "#strings" },
 		{ "include": "#label" },
-		{ "include": "#opcodes" }
+		{ "include": "#opcodes" },
+		{ "include": "#numerics" }
 	],
 	"repository": {
 
@@ -41,6 +42,15 @@
 		"control-flow": {
 			"name": "keyword.control",
 			"match": "\\b(BCC|BCS|BEQ|BMI|BNE|BPL|BVC|BVS|JMP|JSR|RTI|RTS|BRK)\\b"
+		},
+
+		"numerics": {
+			"patterns": [
+				{
+					"match": "#?(\\$|%)[\\dA-Fa-f]{2,4}",
+					"name": "constant.numeric"
+				}
+			]
 		},
 
 		"strings": {
