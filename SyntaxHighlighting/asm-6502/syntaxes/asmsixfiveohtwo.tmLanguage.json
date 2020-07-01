@@ -3,12 +3,9 @@
 	"name": "6502 Assembly",
 	"scopeName": "source.asm",
 	"patterns": [
-		{
-			"include": "#comment"
-		},
-		{
-			"include": "#strings"
-		}
+		{ "include": "#comment" },
+		{ "include": "#strings" },
+		{ "include": "#label" }
 	],
 	"repository": {
 
@@ -17,6 +14,25 @@
 			"match": "(;.*)$"
 		},
 
+		"label": {
+			"match": "([[:alpha:]]*)(\\:)",
+			"captures": {
+				"1": {
+					"name": "entity.name.class.label"
+				},
+				"2": {
+					"name": "entity.name.label.colon"
+				}
+			}
+		},
+
+
+
+
+
+
+
+		
 
 		"keywords": {
 			"patterns": [{
