@@ -7,10 +7,13 @@
 		{ "include": "#strings" },
 		{ "include": "#label" },
 		{ "include": "#opcodes" },
-		{ "include": "#numerics" }
+		{ "include": "#numerics" },
+		{"include": "#namespace"}
 	],
 	"repository": {
 
+
+		
 		"comment": {
 			"name": "comment.line.semicolon",
 			"match": "(;.*)$"
@@ -63,6 +66,19 @@
 					"match": "\\\\."
 				}
 			]
+		},
+
+		"namespace": {
+			"begin": "\\b(namespace)\\s+(_?[[:alpha]]?[[:alnum:]]*)\\s*\\{",
+			"beginCaptures": {
+				"1": {
+					"name": "keyword.other"
+				},
+				"2":{
+					"name": "entity.name"
+				}
+			},
+			"end": "(?<=\\})"
 		}
 	}
 }
