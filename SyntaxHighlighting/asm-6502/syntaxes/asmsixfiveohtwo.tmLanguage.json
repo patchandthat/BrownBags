@@ -78,7 +78,13 @@
 					"name": "entity.name"
 				}
 			},
-			"end": "(?<=\\})"
+			"end": "(?<=\\})",
+			"patterns": [
+				{ "include": "#comment" },
+				{ "include": "#namespace" },
+				{ "include": "#class-declaration" },
+				{ "include": "#compiler-directive"}
+			]
 		}
 	}
 }
