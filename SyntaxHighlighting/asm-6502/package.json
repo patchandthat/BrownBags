@@ -1,0 +1,25 @@
+{
+    "name": "asm-6502",
+    "displayName": "asm-6502",
+    "description": "Support for 6502 assembly",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.46.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "asmsixfiveohtwo",
+            "aliases": ["6502 Assembly", "asmsixfiveohtwo"],
+            "extensions": [".asm"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "asmsixfiveohtwo",
+            "scopeName": "source.asm",
+            "path": "./syntaxes/asmsixfiveohtwo.tmLanguage.json"
+        }]
+    }
+}
