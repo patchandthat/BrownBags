@@ -1,0 +1,91 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "6502 Assembly",
+	"scopeName": "source.asm",
+	"patterns": [
+		{ "include": "#label" },
+		{ "include": "#comment" },
+		{ "include": "#strings" },
+		{ "include": "#opcodes" },
+		{ "include": "#numerics" },
+		{"include": "#namespace"},
+		{"include": "#compiler-directive" }
+	],
+	"repository": {
+
+		"comment": {
+			"name": "comment.line.semicolon",
+			"match": "(;.*)$"
+		},
+
+		"label": {
+			"match": "([[:alpha:]][[:alnum:]]*)(\\:)",
+			"captures": {
+				"1": {
+					"name": "entity.name.class.label"
+				},
+				"2": {
+					"name": "entity.name.label.colon"
+				}
+			}
+		},
+
+		"compiler-directive": {
+			"match": "(\\.(inesprg|ineschr|inesmap|inesmir|rsset|rs|bank|org|dw|db|incbin))",
+			"name": "meta.preprocessor.directive"
+		},
+		
+		"opcodes": {
+			"patterns": 
+			[
+				{
+					"name": "keyword.other.opcode",
+					"match": "\\b(ADC|AND|ASL|BIT|CLC|CLD|CLI|CLV|CMP|CPX|CPY|DEC|DEX|DEY|EOR|INC|INX|INY|LDA|LDX|LDY|LSR|NOP|ORA|PHA|PHP|PLA|PLP|ROL|ROR|SBC|SEC|SED|SEI|STA|STX|STY|TAX|TAY|TSX|TXA|TXS|TYA)\\b"
+				},
+				{ "include": "#control-flow" }
+			]
+		},
+
+		"control-flow": {
+			"name": "keyword.control",
+			"match": "\\b(BCC|BCS|BEQ|BMI|BNE|BPL|BVC|BVS|JMP|JSR|RTI|RTS|BRK)\\b"
+		},
+
+		"numerics": {
+			"patterns": [
+				{
+					"match": "#\\$[\\dA-Fa-f]{2,4}",
+					"name": "constant.numeric.hex"
+				},
+				{
+					"match": "#%\\d{8}",
+					"name": "constant.numeric.binary"
+				},
+				{
+					"match": "(#[[:alpha:]][[:alnum:]]*)",
+					"name": "constant.numeric.named"
+				},
+				{
+					"match": "\\$[\\dA-Fa-f]{2,4}",
+					"name": "entity.other.memoryaddress.hex"
+				},
+				{
+					"match": "%\\d{8,16}",
+					"name": "entity.other.memoryaddress.binary"
+				}
+			]
+		},
+
+		"strings": {
+			"name": "string.quoted.double.asmsixfiveohtwo",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "constant.character.escape.asmsixfiveohtwo",
+					"match": "\\\\."
+				}
+			]
+		}
+	}
+}
