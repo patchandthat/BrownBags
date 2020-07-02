@@ -3,24 +3,23 @@
 	"name": "6502 Assembly",
 	"scopeName": "source.asm",
 	"patterns": [
+		{ "include": "#label" },
 		{ "include": "#comment" },
 		{ "include": "#strings" },
-		{ "include": "#label" },
 		{ "include": "#opcodes" },
 		{ "include": "#numerics" },
-		{"include": "#namespace"}
+		{"include": "#namespace"},
+		{"include": "#compiler-directive" }
 	],
 	"repository": {
 
-
-		
 		"comment": {
 			"name": "comment.line.semicolon",
 			"match": "(;.*)$"
 		},
 
 		"label": {
-			"match": "([[:alpha:]]*)(\\:)",
+			"match": "([[:alpha:]][[:alnum:]]*)(\\:)",
 			"captures": {
 				"1": {
 					"name": "entity.name.class.label"
@@ -31,6 +30,11 @@
 			}
 		},
 
+		"compiler-directive": {
+			"match": "(\\.(inesprg|ineschr|inesmap|inesmir|rsset|rs|bank|org|dw|db|incbin))",
+			"name": "meta.preprocessor.directive"
+		},
+		
 		"opcodes": {
 			"patterns": 
 			[
@@ -50,8 +54,24 @@
 		"numerics": {
 			"patterns": [
 				{
-					"match": "#?(\\$|%)[\\dA-Fa-f]{2,4}",
-					"name": "constant.numeric"
+					"match": "#\\$[\\dA-Fa-f]{2,4}",
+					"name": "constant.numeric.hex"
+				},
+				{
+					"match": "#%\\d{8}",
+					"name": "constant.numeric.binary"
+				},
+				{
+					"match": "(#[[:alpha:]][[:alnum:]]*)",
+					"name": "constant.numeric.named"
+				},
+				{
+					"match": "\\$[\\dA-Fa-f]{2,4}",
+					"name": "entity.other.memoryaddress.hex"
+				},
+				{
+					"match": "%\\d{8,16}",
+					"name": "entity.other.memoryaddress.binary"
 				}
 			]
 		},
@@ -65,25 +85,6 @@
 					"name": "constant.character.escape.asmsixfiveohtwo",
 					"match": "\\\\."
 				}
-			]
-		},
-
-		"namespace": {
-			"begin": "\\b(namespace)\\s+(_?[[:alpha]]?[[:alnum:]]*)\\s*\\{",
-			"beginCaptures": {
-				"1": {
-					"name": "keyword.other"
-				},
-				"2":{
-					"name": "entity.name"
-				}
-			},
-			"end": "(?<=\\})",
-			"patterns": [
-				{ "include": "#comment" },
-				{ "include": "#namespace" },
-				{ "include": "#class-declaration" },
-				{ "include": "#compiler-directive"}
 			]
 		}
 	}
