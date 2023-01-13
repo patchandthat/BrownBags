@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AntlrDemo.Code", "AntlrDemo.Code\AntlrDemo.Code.csproj", "{7FF38133-5FC1-422C-A574-D9D641123260}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AntlrDemo.Tests", "AntlrDemo.Tests\AntlrDemo.Tests.csproj", "{7CB2F042-E618-4683-BE66-A9F873A65ED7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7FF38133-5FC1-422C-A574-D9D641123260}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7FF38133-5FC1-422C-A574-D9D641123260}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7FF38133-5FC1-422C-A574-D9D641123260}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7FF38133-5FC1-422C-A574-D9D641123260}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7CB2F042-E618-4683-BE66-A9F873A65ED7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CB2F042-E618-4683-BE66-A9F873A65ED7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CB2F042-E618-4683-BE66-A9F873A65ED7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CB2F042-E618-4683-BE66-A9F873A65ED7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
