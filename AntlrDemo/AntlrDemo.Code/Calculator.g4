@@ -3,8 +3,11 @@ grammar Calculator;
 // Rules
 body: expression EOF;
 
-expression: ;
-
+expression: NUMBER
+    | NUMBER ADD NUMBER
+    | NUMBER SUBTRACT NUMBER
+    | NUMBER MULTIPLY NUMBER
+    | NUMBER DIVIDE NUMBER;
 
 // Tokens
 NUMBER: '-'? DIGIT+;
