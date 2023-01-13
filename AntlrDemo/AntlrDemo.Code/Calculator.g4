@@ -7,6 +7,14 @@ body: EOF;
 // Tokens
 NUMBER: '-'? DIGIT+;
 
+ADD: '+';
+SUBTRACT: '-';
+MULTIPLY: '*';
+DIVIDE: '/';
+
+PAREN_OPEN: '(';
+PAREN_CLOSE: ')';
+
 // Fragments
 fragment DIGIT: [0-9];
 
