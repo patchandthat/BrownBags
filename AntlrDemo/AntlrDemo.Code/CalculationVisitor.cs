@@ -4,6 +4,14 @@ namespace AntlrDemo.Code
 {
     public class CalculationVisitor : CalculatorBaseVisitor<int>
     {
+        private Dictionary<int, Func<int, int, int>> operations = new()
+        {
+            { CalculatorLexer.ADD, (first, second) => first + second },
+            { CalculatorLexer.SUBTRACT, (first, second) => first - second },
+            { CalculatorLexer.MULTIPLY, (first, second) => first * second },
+            { CalculatorLexer.DIVIDE, (first, second) => first / second },
+        };
+
         public override int VisitBody(CalculatorParser.BodyContext context)
         {
             return context.expression().Accept(this);
@@ -15,19 +23,8 @@ namespace AntlrDemo.Code
             string second = context.NUMBER(1).GetText();
 
             var op = context.op.Type;
-            switch (op)
-            {
-                case CalculatorLexer.ADD:
-                    return int.Parse(first) + int.Parse(second);
-                case CalculatorLexer.SUBTRACT:
-                    return int.Parse(first) - int.Parse(second);
-                case CalculatorLexer.MULTIPLY:
-                    return int.Parse(first) * int.Parse(second);
-                case CalculatorLexer.DIVIDE:
-                    return int.Parse(first) / int.Parse(second);
-            }
-
-            return 0;
+            var function = operations[op];
+            return function(int.Parse(first), int.Parse(second));
         }
     }
 }
