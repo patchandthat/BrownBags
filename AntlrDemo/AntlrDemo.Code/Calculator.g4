@@ -1,7 +1,9 @@
 grammar Calculator;
 
 // Rules
-body: EOF;
+body: expression EOF;
+
+expression: ;
 
 
 // Tokens
