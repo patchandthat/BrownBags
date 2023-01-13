@@ -16,7 +16,44 @@ namespace AntlrDemo.Code
             // Will go bang if the input syntax is incorrect
             IParseTree expressionTree = parser.body();
 
+            // Walk over the entire tree and invoke listener methods on entering and leaving each rule
+            // Returns void, your listener should build up state and have a property to expose the info
+            // you are interested in
+            var listener = new CalculatorListener();
+            ParseTreeWalker.Default.Walk(listener, expressionTree);
+
+            // Visit the tree with a custom visitor, returning a result
+            // you are responsible for walking through the sub-tree yourself
+            var visitor = new CalculationVisitor();
+            var result = expressionTree.Accept(visitor);
+
             return "";
+        }
+    }
+
+    public class CalculationVisitor : CalculatorBaseVisitor<int>
+    {
+        public override int VisitBody(CalculatorParser.BodyContext context)
+        {
+            return base.VisitBody(context);
+        }
+
+        public override int VisitExpression(CalculatorParser.ExpressionContext context)
+        {
+            return base.VisitExpression(context);
+        }
+    }
+
+    public class CalculatorListener : CalculatorBaseListener
+    {
+        public override void EnterExpression(CalculatorParser.ExpressionContext context)
+        {
+            base.EnterExpression(context);
+        }
+
+        public override void ExitExpression(CalculatorParser.ExpressionContext context)
+        {
+            base.ExitExpression(context);
         }
     }
 }
