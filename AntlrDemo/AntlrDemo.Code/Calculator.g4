@@ -5,6 +5,7 @@ body: EOF;
 
 
 // Tokens
+NUMBER: '-'? DIGIT+;
 
 // Fragments
 fragment DIGIT: [0-9];
