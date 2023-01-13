@@ -4,11 +4,11 @@ grammar Calculator;
 body: expression EOF;
 
 expression: NUMBER
-    | expression op=ADD expression
-    | expression op=SUBTRACT expression
+    | PAREN_OPEN expression PAREN_CLOSE
     | expression op=MULTIPLY expression
     | expression op=DIVIDE expression
-    | PAREN_OPEN expression PAREN_CLOSE;
+    | expression op=ADD expression
+    | expression op=SUBTRACT expression;
 
 // Tokens
 NUMBER: '-'? DIGIT+;

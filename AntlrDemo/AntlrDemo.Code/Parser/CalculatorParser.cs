@@ -147,10 +147,10 @@ public partial class CalculatorParser : Parser {
 			return GetRuleContext<ExpressionContext>(i);
 		}
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PAREN_CLOSE() { return GetToken(CalculatorParser.PAREN_CLOSE, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ADD() { return GetToken(CalculatorParser.ADD, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SUBTRACT() { return GetToken(CalculatorParser.SUBTRACT, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode MULTIPLY() { return GetToken(CalculatorParser.MULTIPLY, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DIVIDE() { return GetToken(CalculatorParser.DIVIDE, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ADD() { return GetToken(CalculatorParser.ADD, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SUBTRACT() { return GetToken(CalculatorParser.SUBTRACT, 0); }
 		public ExpressionContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
@@ -230,11 +230,11 @@ public partial class CalculatorParser : Parser {
 						_localctx = new ExpressionContext(_parentctx, _parentState);
 						PushNewRecursionContext(_localctx, _startState, RULE_expression);
 						State = 15;
-						if (!(Precpred(Context, 5))) throw new FailedPredicateException(this, "Precpred(Context, 5)");
+						if (!(Precpred(Context, 4))) throw new FailedPredicateException(this, "Precpred(Context, 4)");
 						State = 16;
-						_localctx.op = Match(ADD);
+						_localctx.op = Match(MULTIPLY);
 						State = 17;
-						expression(6);
+						expression(5);
 						}
 						break;
 					case 2:
@@ -242,11 +242,11 @@ public partial class CalculatorParser : Parser {
 						_localctx = new ExpressionContext(_parentctx, _parentState);
 						PushNewRecursionContext(_localctx, _startState, RULE_expression);
 						State = 18;
-						if (!(Precpred(Context, 4))) throw new FailedPredicateException(this, "Precpred(Context, 4)");
+						if (!(Precpred(Context, 3))) throw new FailedPredicateException(this, "Precpred(Context, 3)");
 						State = 19;
-						_localctx.op = Match(SUBTRACT);
+						_localctx.op = Match(DIVIDE);
 						State = 20;
-						expression(5);
+						expression(4);
 						}
 						break;
 					case 3:
@@ -254,11 +254,11 @@ public partial class CalculatorParser : Parser {
 						_localctx = new ExpressionContext(_parentctx, _parentState);
 						PushNewRecursionContext(_localctx, _startState, RULE_expression);
 						State = 21;
-						if (!(Precpred(Context, 3))) throw new FailedPredicateException(this, "Precpred(Context, 3)");
+						if (!(Precpred(Context, 2))) throw new FailedPredicateException(this, "Precpred(Context, 2)");
 						State = 22;
-						_localctx.op = Match(MULTIPLY);
+						_localctx.op = Match(ADD);
 						State = 23;
-						expression(4);
+						expression(3);
 						}
 						break;
 					case 4:
@@ -266,11 +266,11 @@ public partial class CalculatorParser : Parser {
 						_localctx = new ExpressionContext(_parentctx, _parentState);
 						PushNewRecursionContext(_localctx, _startState, RULE_expression);
 						State = 24;
-						if (!(Precpred(Context, 2))) throw new FailedPredicateException(this, "Precpred(Context, 2)");
+						if (!(Precpred(Context, 1))) throw new FailedPredicateException(this, "Precpred(Context, 1)");
 						State = 25;
-						_localctx.op = Match(DIVIDE);
+						_localctx.op = Match(SUBTRACT);
 						State = 26;
-						expression(3);
+						expression(2);
 						}
 						break;
 					}
@@ -301,10 +301,10 @@ public partial class CalculatorParser : Parser {
 	}
 	private bool expression_sempred(ExpressionContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 0: return Precpred(Context, 5);
-		case 1: return Precpred(Context, 4);
-		case 2: return Precpred(Context, 3);
-		case 3: return Precpred(Context, 2);
+		case 0: return Precpred(Context, 4);
+		case 1: return Precpred(Context, 3);
+		case 2: return Precpred(Context, 2);
+		case 3: return Precpred(Context, 1);
 		}
 		return true;
 	}
@@ -315,9 +315,9 @@ public partial class CalculatorParser : Parser {
 		31,9,1,1,1,0,1,2,2,0,2,0,0,35,0,4,1,0,0,0,2,13,1,0,0,0,4,5,3,2,1,0,5,6,
 		5,0,0,1,6,1,1,0,0,0,7,8,6,1,-1,0,8,14,5,1,0,0,9,10,5,6,0,0,10,11,3,2,1,
 		0,11,12,5,7,0,0,12,14,1,0,0,0,13,7,1,0,0,0,13,9,1,0,0,0,14,29,1,0,0,0,
-		15,16,10,5,0,0,16,17,5,2,0,0,17,28,3,2,1,6,18,19,10,4,0,0,19,20,5,3,0,
-		0,20,28,3,2,1,5,21,22,10,3,0,0,22,23,5,4,0,0,23,28,3,2,1,4,24,25,10,2,
-		0,0,25,26,5,5,0,0,26,28,3,2,1,3,27,15,1,0,0,0,27,18,1,0,0,0,27,21,1,0,
+		15,16,10,4,0,0,16,17,5,4,0,0,17,28,3,2,1,5,18,19,10,3,0,0,19,20,5,5,0,
+		0,20,28,3,2,1,4,21,22,10,2,0,0,22,23,5,2,0,0,23,28,3,2,1,3,24,25,10,1,
+		0,0,25,26,5,3,0,0,26,28,3,2,1,2,27,15,1,0,0,0,27,18,1,0,0,0,27,21,1,0,
 		0,0,27,24,1,0,0,0,28,31,1,0,0,0,29,27,1,0,0,0,29,30,1,0,0,0,30,3,1,0,0,
 		0,31,29,1,0,0,0,3,13,27,29
 	};
