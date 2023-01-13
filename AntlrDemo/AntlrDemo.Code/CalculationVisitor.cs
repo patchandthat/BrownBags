@@ -6,7 +6,8 @@ namespace AntlrDemo.Code
     {
         public override int VisitBody(CalculatorParser.BodyContext context)
         {
-            return base.VisitBody(context);
+            return context.expression().Accept(this);
+            return VisitExpression(context.expression());
         }
 
         public override int VisitExpression(CalculatorParser.ExpressionContext context)
