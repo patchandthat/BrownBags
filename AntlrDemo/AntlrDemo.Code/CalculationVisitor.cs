@@ -19,6 +19,11 @@ namespace AntlrDemo.Code
 
         public override int VisitExpression(CalculatorParser.ExpressionContext context)
         {
+            if (context.PAREN_OPEN() != null)
+            {
+                return context.expression(0).Accept(this);
+            }
+            
             if (context.op == null)
             {
                 string num = context.NUMBER().GetText();

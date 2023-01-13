@@ -62,6 +62,7 @@ namespace AntlrDemo.Tests
         }
 
         [Theory]
+        [InlineData("1 + 2 + 3 + 4", "10")]
         [InlineData("1 + 2 * 3 + 4", "11")]
         [InlineData("1 + 2 * (3 + 4)", "15")]
         [InlineData("7--3", "10")]
