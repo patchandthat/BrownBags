@@ -21,16 +21,16 @@ namespace AntlrDemo.Code
         {
             if (context.op == null)
             {
-                string num = context.NUMBER(0).GetText();
+                string num = context.NUMBER().GetText();
                 return int.Parse(num);
             }
             
-            string first = context.NUMBER(0).GetText();
-            string second = context.NUMBER(1).GetText();
+            int first = context.expression(0).Accept(this);
+            int second = context.expression(1).Accept(this);
 
             var op = context.op.Type;
             var function = operations[op];
-            return function(int.Parse(first), int.Parse(second));
+            return function(first, second);
         }
     }
 }

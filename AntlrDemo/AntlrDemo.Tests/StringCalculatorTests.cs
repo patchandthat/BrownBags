@@ -67,6 +67,7 @@ namespace AntlrDemo.Tests
         [InlineData("7--3", "10")]
         [InlineData("-6*-6", "36")]
         [InlineData("77", "77")]
+        [InlineData("(88)", "88")]
         public void StringCalculator_WhenCalledWithComplexExpression_ShouldReturnCorrectResult(string input, string expectedResult)
         {
             new StringCalculator()
