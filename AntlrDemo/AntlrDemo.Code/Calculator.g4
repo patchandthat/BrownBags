@@ -4,10 +4,10 @@ grammar Calculator;
 body: expression EOF;
 
 expression: NUMBER
-    | NUMBER ADD NUMBER
-    | NUMBER SUBTRACT NUMBER
-    | NUMBER MULTIPLY NUMBER
-    | NUMBER DIVIDE NUMBER;
+    | NUMBER op=ADD NUMBER
+    | NUMBER op=SUBTRACT NUMBER
+    | NUMBER op=MULTIPLY NUMBER
+    | NUMBER op=DIVIDE NUMBER;
 
 // Tokens
 NUMBER: '-'? DIGIT+;
