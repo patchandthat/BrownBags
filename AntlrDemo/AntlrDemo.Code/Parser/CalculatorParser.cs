@@ -120,7 +120,7 @@ public partial class CalculatorParser : Parser {
 			EnterOuterAlt(_localctx, 1);
 			{
 			State = 4;
-			expression();
+			expression(0);
 			State = 5;
 			Match(Eof);
 			}
@@ -138,10 +138,15 @@ public partial class CalculatorParser : Parser {
 
 	public partial class ExpressionContext : ParserRuleContext {
 		public IToken op;
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] NUMBER() { return GetTokens(CalculatorParser.NUMBER); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NUMBER(int i) {
-			return GetToken(CalculatorParser.NUMBER, i);
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NUMBER() { return GetToken(CalculatorParser.NUMBER, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PAREN_OPEN() { return GetToken(CalculatorParser.PAREN_OPEN, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ExpressionContext[] expression() {
+			return GetRuleContexts<ExpressionContext>();
 		}
+		[System.Diagnostics.DebuggerNonUserCode] public ExpressionContext expression(int i) {
+			return GetRuleContext<ExpressionContext>(i);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PAREN_CLOSE() { return GetToken(CalculatorParser.PAREN_CLOSE, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ADD() { return GetToken(CalculatorParser.ADD, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SUBTRACT() { return GetToken(CalculatorParser.SUBTRACT, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode MULTIPLY() { return GetToken(CalculatorParser.MULTIPLY, 0); }
@@ -171,63 +176,110 @@ public partial class CalculatorParser : Parser {
 
 	[RuleVersion(0)]
 	public ExpressionContext expression() {
-		ExpressionContext _localctx = new ExpressionContext(Context, State);
-		EnterRule(_localctx, 2, RULE_expression);
+		return expression(0);
+	}
+
+	private ExpressionContext expression(int _p) {
+		ParserRuleContext _parentctx = Context;
+		int _parentState = State;
+		ExpressionContext _localctx = new ExpressionContext(Context, _parentState);
+		ExpressionContext _prevctx = _localctx;
+		int _startState = 2;
+		EnterRecursionRule(_localctx, 2, RULE_expression, _p);
 		try {
-			State = 20;
+			int _alt;
+			EnterOuterAlt(_localctx, 1);
+			{
+			State = 13;
 			ErrorHandler.Sync(this);
-			switch ( Interpreter.AdaptivePredict(TokenStream,0,Context) ) {
-			case 1:
-				EnterOuterAlt(_localctx, 1);
-				{
-				State = 7;
-				Match(NUMBER);
-				}
-				break;
-			case 2:
-				EnterOuterAlt(_localctx, 2);
+			switch (TokenStream.LA(1)) {
+			case NUMBER:
 				{
 				State = 8;
 				Match(NUMBER);
+				}
+				break;
+			case PAREN_OPEN:
+				{
 				State = 9;
-				_localctx.op = Match(ADD);
+				Match(PAREN_OPEN);
 				State = 10;
-				Match(NUMBER);
-				}
-				break;
-			case 3:
-				EnterOuterAlt(_localctx, 3);
-				{
+				expression(0);
 				State = 11;
-				Match(NUMBER);
-				State = 12;
-				_localctx.op = Match(SUBTRACT);
-				State = 13;
-				Match(NUMBER);
+				Match(PAREN_CLOSE);
 				}
 				break;
-			case 4:
-				EnterOuterAlt(_localctx, 4);
-				{
-				State = 14;
-				Match(NUMBER);
-				State = 15;
-				_localctx.op = Match(MULTIPLY);
-				State = 16;
-				Match(NUMBER);
+			default:
+				throw new NoViableAltException(this);
+			}
+			Context.Stop = TokenStream.LT(-1);
+			State = 29;
+			ErrorHandler.Sync(this);
+			_alt = Interpreter.AdaptivePredict(TokenStream,2,Context);
+			while ( _alt!=2 && _alt!=global::Antlr4.Runtime.Atn.ATN.INVALID_ALT_NUMBER ) {
+				if ( _alt==1 ) {
+					if ( ParseListeners!=null )
+						TriggerExitRuleEvent();
+					_prevctx = _localctx;
+					{
+					State = 27;
+					ErrorHandler.Sync(this);
+					switch ( Interpreter.AdaptivePredict(TokenStream,1,Context) ) {
+					case 1:
+						{
+						_localctx = new ExpressionContext(_parentctx, _parentState);
+						PushNewRecursionContext(_localctx, _startState, RULE_expression);
+						State = 15;
+						if (!(Precpred(Context, 5))) throw new FailedPredicateException(this, "Precpred(Context, 5)");
+						State = 16;
+						_localctx.op = Match(ADD);
+						State = 17;
+						expression(6);
+						}
+						break;
+					case 2:
+						{
+						_localctx = new ExpressionContext(_parentctx, _parentState);
+						PushNewRecursionContext(_localctx, _startState, RULE_expression);
+						State = 18;
+						if (!(Precpred(Context, 4))) throw new FailedPredicateException(this, "Precpred(Context, 4)");
+						State = 19;
+						_localctx.op = Match(SUBTRACT);
+						State = 20;
+						expression(5);
+						}
+						break;
+					case 3:
+						{
+						_localctx = new ExpressionContext(_parentctx, _parentState);
+						PushNewRecursionContext(_localctx, _startState, RULE_expression);
+						State = 21;
+						if (!(Precpred(Context, 3))) throw new FailedPredicateException(this, "Precpred(Context, 3)");
+						State = 22;
+						_localctx.op = Match(MULTIPLY);
+						State = 23;
+						expression(4);
+						}
+						break;
+					case 4:
+						{
+						_localctx = new ExpressionContext(_parentctx, _parentState);
+						PushNewRecursionContext(_localctx, _startState, RULE_expression);
+						State = 24;
+						if (!(Precpred(Context, 2))) throw new FailedPredicateException(this, "Precpred(Context, 2)");
+						State = 25;
+						_localctx.op = Match(DIVIDE);
+						State = 26;
+						expression(3);
+						}
+						break;
+					}
+					} 
 				}
-				break;
-			case 5:
-				EnterOuterAlt(_localctx, 5);
-				{
-				State = 17;
-				Match(NUMBER);
-				State = 18;
-				_localctx.op = Match(DIVIDE);
-				State = 19;
-				Match(NUMBER);
-				}
-				break;
+				State = 31;
+				ErrorHandler.Sync(this);
+				_alt = Interpreter.AdaptivePredict(TokenStream,2,Context);
+			}
 			}
 		}
 		catch (RecognitionException re) {
@@ -236,19 +288,38 @@ public partial class CalculatorParser : Parser {
 			ErrorHandler.Recover(this, re);
 		}
 		finally {
-			ExitRule();
+			UnrollRecursionContexts(_parentctx);
 		}
 		return _localctx;
 	}
 
+	public override bool Sempred(RuleContext _localctx, int ruleIndex, int predIndex) {
+		switch (ruleIndex) {
+		case 1: return expression_sempred((ExpressionContext)_localctx, predIndex);
+		}
+		return true;
+	}
+	private bool expression_sempred(ExpressionContext _localctx, int predIndex) {
+		switch (predIndex) {
+		case 0: return Precpred(Context, 5);
+		case 1: return Precpred(Context, 4);
+		case 2: return Precpred(Context, 3);
+		case 3: return Precpred(Context, 2);
+		}
+		return true;
+	}
+
 	private static int[] _serializedATN = {
-		4,1,9,23,2,0,7,0,2,1,7,1,1,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-		1,1,1,1,1,1,1,1,1,3,1,21,8,1,1,1,0,0,2,0,2,0,0,24,0,4,1,0,0,0,2,20,1,0,
-		0,0,4,5,3,2,1,0,5,6,5,0,0,1,6,1,1,0,0,0,7,21,5,1,0,0,8,9,5,1,0,0,9,10,
-		5,2,0,0,10,21,5,1,0,0,11,12,5,1,0,0,12,13,5,3,0,0,13,21,5,1,0,0,14,15,
-		5,1,0,0,15,16,5,4,0,0,16,21,5,1,0,0,17,18,5,1,0,0,18,19,5,5,0,0,19,21,
-		5,1,0,0,20,7,1,0,0,0,20,8,1,0,0,0,20,11,1,0,0,0,20,14,1,0,0,0,20,17,1,
-		0,0,0,21,3,1,0,0,0,1,20
+		4,1,9,33,2,0,7,0,2,1,7,1,1,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,3,1,14,8,
+		1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,5,1,28,8,1,10,1,12,1,
+		31,9,1,1,1,0,1,2,2,0,2,0,0,35,0,4,1,0,0,0,2,13,1,0,0,0,4,5,3,2,1,0,5,6,
+		5,0,0,1,6,1,1,0,0,0,7,8,6,1,-1,0,8,14,5,1,0,0,9,10,5,6,0,0,10,11,3,2,1,
+		0,11,12,5,7,0,0,12,14,1,0,0,0,13,7,1,0,0,0,13,9,1,0,0,0,14,29,1,0,0,0,
+		15,16,10,5,0,0,16,17,5,2,0,0,17,28,3,2,1,6,18,19,10,4,0,0,19,20,5,3,0,
+		0,20,28,3,2,1,5,21,22,10,3,0,0,22,23,5,4,0,0,23,28,3,2,1,4,24,25,10,2,
+		0,0,25,26,5,5,0,0,26,28,3,2,1,3,27,15,1,0,0,0,27,18,1,0,0,0,27,21,1,0,
+		0,0,27,24,1,0,0,0,28,31,1,0,0,0,29,27,1,0,0,0,29,30,1,0,0,0,30,3,1,0,0,
+		0,31,29,1,0,0,0,3,13,27,29
 	};
 
 	public static readonly ATN _ATN =
