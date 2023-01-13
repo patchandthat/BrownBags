@@ -1,10 +1,14 @@
 
-FakingAmazing/bin/
+**/bin/
 
-FakingAmazing/obj/
+**/obj/
 
 packages/
 
 SyntaxHighlighting/.DS_Store
 
 .DS_Store
+
+**/.idea/
+
+**/*.*.DotSettings.user
