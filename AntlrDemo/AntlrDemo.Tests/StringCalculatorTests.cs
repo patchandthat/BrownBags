@@ -16,6 +16,17 @@ namespace AntlrDemo.Tests
                 .Evaluate(input)
                 .Should().Be(expectedResult);
         }
+        
+        [Fact]
+        public void StringCalculator_WhenCalledWithAddition2_ShouldReturnCorrectResult()
+        {
+            const string input = "2 + 4";
+            const string expectedResult = "6";
+
+            new StringCalculator()
+                .Evaluate(input)
+                .Should().Be(expectedResult);
+        }
 
         [Fact]
         public void StringCalculator_WhenCalledWithSubtraction_ShouldReturnCorrectResult()

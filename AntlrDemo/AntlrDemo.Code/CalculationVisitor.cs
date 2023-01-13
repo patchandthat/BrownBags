@@ -7,12 +7,14 @@ namespace AntlrDemo.Code
         public override int VisitBody(CalculatorParser.BodyContext context)
         {
             return context.expression().Accept(this);
-            return VisitExpression(context.expression());
         }
 
         public override int VisitExpression(CalculatorParser.ExpressionContext context)
         {
-            return 5;
+            string first = context.NUMBER(0).GetText();
+            string second = context.NUMBER(1).GetText();
+
+            return int.Parse(first) + int.Parse(second);
         }
     }
 }
